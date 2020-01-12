@@ -21,7 +21,7 @@ def Login():
         print("wait")
     else:
         button.click()
-    x = (driver.find_element_by_class_name("applicant-resumes-update").get_attribute("innerHTML"))
+    x = driver.find_element_by_class_name("applicant-resumes-update").get_attribute("innerHTML")
     driver.close()
     return x
 
