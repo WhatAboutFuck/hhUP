@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-import config 
-
+import config
+import datetime
 
 
 def Login():
@@ -11,6 +11,7 @@ def Login():
     options.add_argument(("user-agent={}").format(config.headers))
     options.headless = True
     driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+    
     driver.get(config.link)
     driver.find_element_by_name("username").send_keys(config.login)
     driver.find_element_by_name("password").send_keys(config.password)
@@ -22,12 +23,12 @@ def Login():
         print("wait")
     else:
         button.click()
-    x = driver.find_element_by_class_name("applicant-resumes-update").get_attribute("innerHTML")
     driver.close()
-    return x
+    return Time()
 
-def Time(s=Login())->str:
+def Time()->str:
     '''Returns time to make a task for task manager'''
-    return s.split(";")[-1].split("<")[0]
+    return str(datetime.datetime.now()).split(' ')[-1]
 
-Time()
+
+Login()
