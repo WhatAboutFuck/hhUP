@@ -17,7 +17,8 @@ def Login():
     driver.find_element_by_xpath((".//input[@value='Войти в личный кабинет']")).click()
     driver.implicitly_wait(4)
     button = driver.find_element_by_class_name("applicant-resumes-recommendations-button")
-    if button.get_attribute("innerHTML").split(';')[-1].split("<!-- -->")[-1].split("</a>")[0] == "подходящие вакансии":
+    l = ["подходящих вакансий","подходящие вакансии","подходящяя вакансия"]
+    if button.get_attribute("innerHTML").split(';')[-1].split("<!-- -->")[-1].split("</a>")[0] in l:
         print("wait")
     else:
         button.click()
